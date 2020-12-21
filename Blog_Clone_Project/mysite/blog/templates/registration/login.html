@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+  <div class="jumbotron">
+    <h2>Please login</h2>
+    <h3>(Must be Superuser to login. Please check with site admin.)</h3>
+
+    {% if form.errors %}
+       <p>Your username and password didn't match! Please try again.</p>
+    {% endif %}
+
+    <!-- We are not saying 'blog:login' below because there is no templates folder at
+    project level. Everything from project's urls.py will automatically be pointing to
+    the app's templates folder. -->
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" class="btn btn-primary" value="Login">
+        <input type="hidden" name="next" value="{{next}}">
+        <!-- The views.login from urls.py will give us the value of next.
+      It basically has to deal with what happpens next after login -->
+
+    </form>
+
+  </div>
+
+{% endblock %}
