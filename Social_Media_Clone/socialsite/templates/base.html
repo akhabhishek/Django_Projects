@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Star Social</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <!-- In href, static means look under the STATICFILES_DIR that we defined in settings.py -->
+    <link rel="stylesheet" href="{% static 'socialsite/css/master.css'%}">
+
+  </head>
+  <body>
+
+    <nav class="navbar mynav" role='navigation' id='navbar'>
+      <div class="container">
+        <a class="navbar-brand mynav" href="{% url 'home' %}">Start Social</a>
+
+        <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+            <li> <a href="{% url 'posts:create' %}">Post</a> </li>
+            <li> <a href="{% url 'groups:all' %}">Groups</a> </li>
+            <li> <a href="{% url 'groups:create' %}">Create Group</a> </li>
+            <li> <a href="{% url 'accounts:logout' %}">Logout</a> </li>
+          {% else %}
+            <li> <a href="{% url 'groups:all' %}">Groups</a> </li>
+            <li> <a href="{% url 'accounts:login' %}">Login</a> </li>
+            <li> <a href="{% url 'accounts:signup' %}">Sign Up</a> </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mycontent">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+  </body>
+
+  <script type="text/javascript" src="{% static 'socialsite/js/master.js' %}">
+  </script>
+
+</html>
