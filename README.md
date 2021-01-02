@@ -5,4 +5,4 @@ I have built this simple website as a start and deployed it on Pythonanywhere.co
 
 http://akhabhishek.pythonanywhere.com/
 
-I added my second project - a social media page clone. This site allows multiple users to sign up, create groups and posts.
+I added my second project - a social media page clone. This site allows multiple users to sign up, create groups and posts. Unlike the first project, this project is made up of 3 applications.
